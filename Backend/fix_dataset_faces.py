@@ -14,7 +14,7 @@ DATASET_DIR = "dataset"  # Your actual dataset path
 def process_image(image_path):
     img = cv2.imread(image_path)
     if img is None:
-        print(f"⚠️ Warning: Could not read {image_path}")
+        print(f"Warning: Could not read {image_path}")
         return None
 
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -22,7 +22,7 @@ def process_image(image_path):
     # Detect face
     face = detect_face(img_rgb)
     if face is None:
-        print(f"❌ No face detected in: {image_path}")
+        print(f"No face detected in: {image_path}")
         return None
 
     # Preprocess face
@@ -40,7 +40,7 @@ def main():
         if not os.path.isdir(person_folder):
             continue
 
-        print(f"🔵 Processing {person_name}...")
+        print(f"Processing {person_name}...")
 
         for img_name in os.listdir(person_folder):
             img_path = os.path.join(person_folder, img_name)
@@ -50,9 +50,9 @@ def main():
             if processed_img is not None:
                 # Overwrite the original file
                 cv2.imwrite(img_path, cv2.cvtColor(processed_img, cv2.COLOR_RGB2BGR))
-                print(f"✅ Replaced: {img_path}")
+                print(f"Replaced: {img_path}")
 
-    print("\n🎯 All dataset images processed and replaced successfully.")
+    print("\nAll dataset images processed and replaced successfully.")
 
 if __name__ == "__main__":
     main()
